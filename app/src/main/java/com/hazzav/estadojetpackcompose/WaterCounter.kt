@@ -10,6 +10,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,7 +23,7 @@ fun WaterCounter(
     Column(
         modifier = modifier.padding(top = 40.dp, start = 16.dp)
     ) {
-        var contador by remember { mutableStateOf(0) }
+        var contador by rememberSaveable { mutableStateOf(0) }
 
         if (contador > 0) {
             //var mostrarTarea by remember { mutableStateOf(true)}

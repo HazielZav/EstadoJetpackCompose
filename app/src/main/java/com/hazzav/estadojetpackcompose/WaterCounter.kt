@@ -1,6 +1,7 @@
 package com.hazzav.estadojetpackcompose
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -22,16 +23,42 @@ fun WaterCounter(
         modifier = modifier.padding(top = 40.dp, start = 16.dp)
     ) {
         var contador by remember { mutableStateOf(0) }
-        Text(
-            text = "Has tomado $contador vasos de agua.",
-            modifier = modifier
-                .padding(16.dp)
-        )
-        Button(
-            onClick = { contador ++ },
+
+        if (contador > 0) {
+            //var mostrarTarea by remember { mutableStateOf(true)}
+//            if (mostrarTarea){
+//                WellnessTaskItem(
+//                    onClose = { mostrarTarea = false },
+//                    taskName = "¿Ya hiciste tu caminata de 15 minutos hoy?"
+//                )
+//            }
+            Text(
+                text = "Has tomado $contador vasos de agua.",
+                modifier = modifier
+                    .padding(16.dp)
+            )
+        } else {
+            Text(
+                text = "¡Aún no has tomado agua!",
+                modifier = modifier
+                    .padding(16.dp)
+            )
+        }
+        Row(
             modifier = Modifier.padding(top = 8.dp)
         ) {
-            Text("Tomate un vasito")
+            Button(
+                onClick = { contador ++ },
+                enabled = contador < 10,
+            ) {
+                Text("Tomate un vasito")
+            }
+//            Button(
+//                onClick = { contador = 0 },
+//                Modifier.padding(start = 8.dp)
+//            ) {
+//                Text("Reiniciar conteo.")
+//            }
         }
     }
 }
